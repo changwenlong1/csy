@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.qzcsy</groupId>
+    <artifactId>csy-cloud</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>csy-cloud</name>
+    <description>Demo project for Spring Boot</description>
+    <packaging>pom</packaging>
+    <properties>
+        <java.version>8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-boot-admin.version>2.4.2</spring-boot-admin.version>
+        <swagger.version>3.0.0</swagger.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <ctp-common.version>1.0-SNAPSHOT</ctp-common.version>
+        <hutool.version>5.5.1</hutool.version>
+
+
+        <mybatis-plus.version>3.4.2</mybatis-plus.version>
+        <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
+        <spring-cloud-alibaba.version>2.2.0.RELEASE</spring-cloud-alibaba.version>
+        <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+            <version>${spring-cloud-alibaba.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring-boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <!-- add by hutao spring-boot-admin版本依赖管理 -->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-dependencies</artifactId>
+            <version>${spring-boot-admin.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
+
+
+        <!-- OpenAPI3 (swagger3) -->
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
+        <!--            <dependency>-->
+        <!--                <groupId>io.springfox</groupId>-->
+        <!--                <artifactId>springfox-boot-starter</artifactId>-->
+        <!--                <version>3.0.0</version>-->
+        <!--            </dependency>-->
+        <!--            &lt;!&ndash; knife4j UI &ndash;&gt;-->
+        <!--            <dependency>-->
+        <!--                <groupId>com.github.xiaoymin</groupId>-->
+        <!--                <artifactId>knife4j-spring-boot-starter</artifactId>-->
+        <!--                <version>3.0.3</version>-->
+        <!--            </dependency>-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.79</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.sgcc.epri</groupId>-->
+<!--            <artifactId>ctp-common</artifactId>-->
+<!--            <version>${ctp-common.version}</version>-->
+<!--        </dependency>-->
+    </dependencies>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profileActive>dev</profileActive>
+                <pom.nacos.ip>172.17.70.31</pom.nacos.ip>
+                <pom.nacos.port>8848</pom.nacos.port>
+                <pom.nacos.namespace>ctp-dev</pom.nacos.namespace>
+                <pom.pageoffice>D:\\pageoffice</pom.pageoffice>
+                <!--适用多网卡机器-->
+                <pom.nacos.register.ip>172.16.71.98</pom.nacos.register.ip>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profileActive>test</profileActive>
+                <pom.nacos.ip>172.17.70.31</pom.nacos.ip>
+                <pom.nacos.port>8848</pom.nacos.port>
+                <pom.nacos.namespace>ctp-test</pom.nacos.namespace>
+                <pom.pageoffice>D:\\pageoffice</pom.pageoffice>
+                <!--适用多网卡机器-->
+                <pom.nacos.register.ip></pom.nacos.register.ip>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profileActive>prod</profileActive>
+                <pom.nacos.ip>118.144.88.222</pom.nacos.ip>
+                <pom.nacos.port>8848</pom.nacos.port>
+                <pom.nacos.namespace>ctp-prod</pom.nacos.namespace>
+                <pom.pageoffice>/app/prod/pageoffice</pom.pageoffice>
+                <!--适用多网卡机器-->
+                <pom.nacos.register.ip></pom.nacos.register.ip>
+            </properties>
+        </profile>
+        <profile>
+            <id>local</id>
+            <properties>
+                <profileActive>local</profileActive>
+                <pom.nacos.ip>172.17.70.31</pom.nacos.ip>
+                <pom.nacos.port>8848</pom.nacos.port>
+                <pom.nacos.namespace>ctp-prod</pom.nacos.namespace>
+                <pom.pageoffice>D:\\pageoffice</pom.pageoffice>
+                <!--适用多网卡机器-->
+                <pom.nacos.register.ip></pom.nacos.register.ip>
+            </properties>
+        </profile>
+    </profiles>
+    <build>
+        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+            <plugins>
+<!--                <plugin>-->
+<!--                    <artifactId>maven-clean-plugin</artifactId>-->
+<!--                    <version>3.1.0</version>-->
+<!--                </plugin>-->
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <version>2.2.6.RELEASE</version>-->
+<!--                <configuration>-->
+<!--                    <excludes>-->
+<!--                        <exclude>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                        </exclude>-->
+<!--                    </excludes>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+                <configuration>
+                    <locales>en,fr</locales>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>application-*.yml</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>application.yml</include>
+                    <include>application-${profileActive}.yml</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+</project>
